@@ -1,0 +1,16 @@
+{
+  "manifest_version": 3,
+  "name": "MCP Bridge for Arena",
+  "version": "0.2.0",
+  "description": "Connect local MCP servers (SSE) to arena.ai chats: /c http://localhost:3000/sse",
+  "icons": { "16": "icons/icon16.png", "48": "icons/icon48.png", "128": "icons/icon128.png" },
+  "action": { "default_title": "MCP Bridge", "default_popup": "popup.html" },
+  "background": { "service_worker": "background.js", "type": "module" },
+  "permissions": ["storage"],
+  "host_permissions": ["http://localhost/*", "http://127.0.0.1/*"],
+  "content_scripts": [{
+    "matches": ["https://arena.ai/*", "https://*.arena.ai/*", "https://lmarena.ai/*", "https://*.lmarena.ai/*"],
+    "js": ["lib.js", "content.js"],
+    "run_at": "document_idle"
+  }]
+}
